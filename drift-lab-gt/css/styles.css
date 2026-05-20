@@ -1,0 +1,662 @@
+/* ======================================== */
+/*          BASE STYLES                     */
+/* ======================================== */
+
+/* Basic Reset & Variables */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --clr-black: #1a1a1a;
+    --clr-dark-grey: #2b2b2b;
+    --clr-medium-grey: #444444;
+    --clr-light-grey: #cccccc;
+    --clr-white: #ffffff;
+    --clr-off-white: #f0f0f0;
+    /* --clr-grunge-bg: #f4f0e9; */ /* Replaced by animated bg */
+    --clr-accent-red: #ff3131;
+    --clr-accent-red-darker: #a00000; /* Darker red for gradient */
+    --clr-accent-red-hover: #ff6363;
+
+    --font-primary: 'Roboto', sans-serif;
+    --font-heading: 'Teko', sans-serif;
+    --header-height: 80px; /* Increased header height */
+    --content-bg-opacity: 0.85; /* Opacity for content backgrounds */
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--clr-black);
+    line-height: 1.6; /* Slightly increased line height */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* --- Animated Background --- */
+    background: linear-gradient(-45deg, var(--clr-accent-red-darker), var(--clr-black), #3a0000, var(--clr-accent-red));
+    background-size: 400% 400%;
+    animation: animatedRedBackground 20s ease infinite;
+    overflow-x: hidden; /* Prevent horizontal scrollbar from animation */
+}
+
+@keyframes animatedRedBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Header --- */
+.site-header {
+    background-color: var(--clr-black);
+    height: var(--header-height);
+    border-bottom: 4px solid var(--clr-accent-red);
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    position: sticky; /* Keep header visible */
+    top: 0;
+    z-index: 100;
+}
+.header-container {
+    width: 100%;
+    max-width: 1400px; /* Wider max-width */
+    margin: 0 auto;
+    display: flex; /* Added for logo/nav alignment */
+    justify-content: space-between; /* Added */
+    align-items: center; /* Added */
+}
+#logo {
+    height: 60px; /* Increased logo height */
+    width: auto;
+}
+
+/* --- Header Navigation (Base) --- */
+.main-nav ul { list-style: none; display: flex; gap: 10px; }
+.main-nav a {
+    text-decoration: none; color: var(--clr-light-grey);
+    padding: 8px 15px; /* Slightly more padding */
+    font-weight: bold; border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 1rem; /* Slightly larger nav font */
+    text-transform: uppercase;
+}
+.main-nav a:hover { color: var(--clr-white); background-color: var(--clr-dark-grey); }
+.main-nav a.active { color: var(--clr-white); background-color: var(--clr-accent-red); }
+
+
+/* --- Main Content Area --- */
+#main-content {
+    flex-grow: 1; /* Allow main to fill space */
+}
+
+/* --- Page Section Handling (Base) --- */
+.page-section {
+    display: none; /* Hide sections by default */
+    padding: 2rem 1rem; /* Basic padding */
+}
+.page-section.active {
+    display: block; /* Show the active section */
+}
+/* Special case for configurator to use flex */
+#configurator-section.active {
+    display: flex; /* Configurator uses flex layout when active */
+    padding: 0; /* Remove padding, handled internally */
+}
+
+/* Center content within standard sections + add background */
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, var(--content-bg-opacity)); /* Semi-transparent white */
+    padding: 2rem; /* Padding inside the container */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* Special styling for About container */
+.about-container {
+    max-width: 900px; /* Slightly narrower for text focus */
+    margin-top: 2rem; /* Space below header */
+    margin-bottom: 2rem;
+}
+.about-container p {
+    margin-bottom: 1.5rem; /* More spacing between paragraphs */
+    color: var(--clr-dark-grey);
+    font-size: 1.1rem;
+}
+.about-container p:last-child {
+    margin-bottom: 0;
+}
+
+/* Style for the logo in the About section */
+.about-logo {
+    display: block; /* Makes margin: auto work for horizontal centering */
+    max-width: 250px; /* Adjust size as needed */
+    height: auto;    /* Maintain aspect ratio */
+    margin: 0 auto 1.5rem auto; /* Centers the logo horizontally and adds space below it */
+}
+
+/* Optional: Adjust heading margin if needed after adding logo */
+#about-section h2 {
+    margin-top: 0; /* Remove top margin if logo provides enough space */
+}
+
+/* Section headings and intros (Base) */
+.page-section h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem; /* Larger headings */
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: var(--clr-black);
+    text-align: center;
+}
+.section-intro {
+    text-align: center;
+    color: var(--clr-medium-grey); /* Darker grey for intro */
+    margin-bottom: 2rem;
+    font-size: 1.2rem; /* Larger intro text */
+}
+
+
+/* --- Gallery / Product Grid Styles (Base) --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background-color: var(--clr-white); /* White cards */
+    border: 1px solid var(--clr-light-grey);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 1rem 1rem 1.5rem; /* More padding at bottom */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.product-card-image {
+    width: 100%;
+    max-width: 300px; /* Limit image size */
+    height: auto;
+    aspect-ratio: 16 / 10; /* Adjust aspect ratio as needed */
+    object-fit: cover; /* Or contain */
+    margin: 0 auto 1rem;
+    border-radius: 4px;
+    background-color: var(--clr-dark-grey); /* Placeholder bg */
+}
+/* Style for broken gallery images */
+.product-card-image:not([src])::after {
+     content: "Image"; /* Simpler placeholder */
+     display: block; color: #aaa;
+     /* Center placeholder text if needed */
+     padding-top: 40%; /* Adjust based on aspect ratio */
+     box-sizing: border-box;
+}
+
+
+.product-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--clr-black);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.product-card-price {
+    color: var(--clr-medium-grey);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.product-card-button { /* Style like CTA */
+    background-color: var(--clr-accent-red);
+    color: var(--clr-white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Push button to bottom */
+    width: 100%;
+}
+.product-card-button:hover {
+    background-color: var(--clr-accent-red-hover);
+}
+
+
+/* --- Configurator Layout (Base) --- */
+.configurator-container {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - var(--header-height) - 50px); /* Header height + footer estimate */
+}
+
+/* Viewer Column (Base) */
+.viewer-column {
+    flex: 3; /* Takes up more space */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    /* Added background for readability */
+    background-color: rgba(255, 255, 255, calc(var(--content-bg-opacity) * 0.8)); /* Slightly more transparent white */
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.current-car-title { /* Base style */
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: var(--clr-black);
+}
+
+.car-viewer-wrapper { /* Base style */
+    width: 100%;
+    max-width: 800px; /* Max width for the viewer */
+    aspect-ratio: 16 / 9;
+    background-color: var(--clr-dark-grey);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.car-viewer { /* Base style */
+    width: 100%; height: 100%; position: relative;
+    cursor: grab; user-select: none;
+}
+.car-viewer:active { cursor: grabbing; }
+
+.car-image { /* Base style */
+    display: block; width: 100%; height: 100%;
+    object-fit: contain; user-select: none; -webkit-user-drag: none;
+    filter: brightness(1) saturate(1) hue-rotate(0deg) sepia(0%);
+    transition: filter 0.3s ease;
+    background-color: var(--clr-dark-grey); /* BG if image fails */
+}
+.car-image:not([src])::after { /* Placeholder Text */
+    content: "Image Sequence Required";
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: #aaa; font-size: 1rem;
+}
+
+.viewer-overlay { /* Drag Hint - Base style */
+    position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7); color: var(--clr-white);
+    padding: 4px 10px; border-radius: 3px; font-size: 0.8rem;
+    opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+}
+.car-viewer:hover .viewer-overlay { opacity: 1; }
+.car-viewer:active .viewer-overlay { opacity: 0; }
+
+.price-summary { /* Base style */
+    margin-top: auto; /* Push to bottom */
+    font-size: 1.2rem; font-weight: bold;
+    color: var(--clr-black); padding-top: 1rem;
+}
+.price-label { color: var(--clr-medium-grey); }
+
+/* Back to Gallery Button (Base) */
+.back-to-gallery-btn {
+    background: none; border: none; color: var(--clr-medium-grey);
+    font-size: 0.9rem; cursor: pointer; padding: 5px 10px;
+    margin-bottom: 1rem; align-self: flex-start; /* Position top-left */
+    transition: color 0.2s;
+}
+.back-to-gallery-btn:hover { color: var(--clr-accent-red); }
+
+
+/* Controls Column (Base) */
+.controls-column {
+    flex: 1; /* Takes less space */
+    min-width: 300px; /* Minimum width */
+    max-width: 380px; /* Maximum width */
+    /* Updated background for contrast */
+    background-color: rgba(26, 26, 26, var(--content-bg-opacity)); /* Semi-transparent black */
+    color: var(--clr-off-white);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Scroll if content exceeds height */
+}
+
+/* Controls Heading (Base) */
+.controls-heading {
+    font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 1.5rem;
+    color: var(--clr-white); text-transform: uppercase; text-align: center;
+    border-bottom: 1px solid var(--clr-medium-grey); padding-bottom: 0.8rem;
+}
+
+.options-panel-container { margin-bottom: 1.5rem; } /* Base spacing */
+
+.options-panel { /* Base style */
+    display: none; padding: 1rem; border: 1px solid var(--clr-medium-grey);
+    border-radius: 5px;
+    background-color: rgba(43, 43, 43, var(--content-bg-opacity)); /* Semi-transparent dark grey */
+}
+.options-panel.active { display: block; } /* Show active panel */
+
+.options-panel h4 { /* Panel Title - Base style */
+    font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 1rem;
+    color: var(--clr-white); text-align: center;
+}
+
+.control-section { margin-bottom: 1rem; } /* Base spacing */
+.control-section:last-child { margin-bottom: 0; }
+
+.control-section h5 { /* e.g., "Color:", "Options:" - Base style */
+    font-size: 0.9rem; color: var(--clr-light-grey); margin-bottom: 0.6rem;
+    text-transform: uppercase; font-weight: bold;
+}
+
+/* Color Swatches (Base) */
+.color-options button.color-swatch {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid var(--clr-medium-grey); margin-right: 6px;
+    cursor: pointer; transition: transform 0.2s, border-color 0.2s;
+    display: inline-block; vertical-align: middle;
+}
+.color-options button.color-swatch:hover { transform: scale(1.1); }
+.color-options button.color-swatch.active {
+    border-color: var(--clr-accent-red); transform: scale(1.15);
+    box-shadow: 0 0 6px var(--clr-accent-red);
+}
+
+/* Customization Controls (Base) */
+.customization-options select,
+.customization-options label {
+    display: block; margin-bottom: 0.7rem;
+    color: var(--clr-off-white); font-size: 0.95rem;
+}
+.customization-options select {
+    width: 100%; padding: 8px 10px; border-radius: 4px;
+    border: 1px solid var(--clr-medium-grey); background-color: #555; /* Slightly lighter */
+    color: var(--clr-off-white);
+}
+.customization-options label input[type="checkbox"] {
+    margin-right: 8px; accent-color: var(--clr-accent-red);
+    vertical-align: middle;
+}
+
+/* Action Area / CTA Button (Base) */
+.action-area { margin-top: auto; padding-top: 1.5rem; }
+.cta-button { /* Base for config and contact */
+    background-color: var(--clr-accent-red); color: var(--clr-white);
+    border: none; padding: 12px 20px; border-radius: 5px;
+    cursor: pointer; font-size: 1rem; font-weight: bold;
+    text-transform: uppercase; transition: background-color 0.3s ease;
+    text-align: center; display: block;
+}
+.cta-button:hover { background-color: var(--clr-accent-red-hover); }
+/* Specific width for configurator button */
+.controls-column .cta-button { width: 100%; }
+
+
+/* Inline Contact Form (Base) */
+.contact-section-inline { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--clr-medium-grey); }
+.contact-section-inline h5 { font-size: 0.9rem; color: var(--clr-light-grey); margin-bottom: 0.6rem; text-transform: uppercase; font-weight: bold; }
+.contact-form-inline { display: flex; gap: 5px; }
+.contact-form-inline input[type="email"] {
+    flex-grow: 1; padding: 8px; border-radius: 4px;
+    border: 1px solid var(--clr-medium-grey); background-color: #555;
+    color: var(--clr-off-white); font-size: 0.9rem;
+}
+.contact-form-inline button {
+    background-color: var(--clr-medium-grey); color: var(--clr-off-white);
+    border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;
+    font-size: 0.9rem; font-weight: bold;
+}
+.contact-form-inline button:hover { background-color: var(--clr-dark-grey); }
+
+
+/* --- Contact Form Section Styles (Base) --- */
+/* Ensure contact form stands out */
+.contact-container {
+    background-color: rgba(255, 255, 255, var(--content-bg-opacity)); /* Uses same bg as other sections */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+.contact-form {
+    max-width: 600px; margin: 1rem auto 0; /* Reduced top margin */
+    display: grid; gap: 1rem;
+    /* Removed background/padding here as it's handled by contact-container */
+}
+.contact-form label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--clr-dark-grey); }
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%; padding: 10px; border-radius: 4px;
+    border: 1px solid var(--clr-light-grey); background-color: var(--clr-off-white);
+    color: var(--clr-black); font-size: 1rem;
+}
+.contact-form textarea { resize: vertical; min-height: 100px; }
+/* Specific width for contact form button */
+.contact-form button.cta-button { width: auto; margin: 1rem auto 0; }
+
+
+/* --- Footer (Base) --- */
+.site-footer {
+    text-align: center; padding: 1.5rem; /* Base padding */
+    color: var(--clr-light-grey);
+    background-color: var(--clr-black); /* Solid black footer */
+    border-top: 1px solid var(--clr-medium-grey); font-size: 0.9rem;
+    width: 100%; margin-top: auto; /* Push footer down */
+    position: relative; /* Ensure it's above the body background */
+    z-index: 10;
+}
+
+
+/* ======================================== */
+/*          CSS COLOR FILTERS               */
+/* ======================================== */
+/* Keep these outside media queries unless specifically needed */
+.car-image[data-color-filter="blue"] { filter: brightness(0.9) saturate(2) hue-rotate(190deg) sepia(20%); }
+.car-image[data-color-filter="red"] { filter: brightness(0.95) saturate(3) hue-rotate(330deg) sepia(30%); }
+.car-image[data-color-filter="black"] { filter: brightness(0.4) saturate(0) contrast(1.1); }
+.car-image[data-color-filter="white"] { filter: brightness(1.5) saturate(0) contrast(0.9); }
+.car-image[data-color-filter="yellow"] { filter: brightness(1.1) saturate(3) hue-rotate(30deg) sepia(10%); }
+.car-image[data-color-filter="orange"] { filter: brightness(1) saturate(3) hue-rotate(0deg) sepia(20%); }
+.car-image[data-color-filter="grey"] { filter: brightness(0.8) saturate(0); }
+.car-image[data-color-filter="panda"] { filter: brightness(1.1) saturate(0.1); } /* Filter won't do panda well */
+.car-image[data-color-filter="silver"] { filter: brightness(1) saturate(1) hue-rotate(0deg) sepia(0%); }
+
+
+/* ======================================== */
+/*          RESPONSIVE STYLES               */
+/* ======================================== */
+
+/* --- Tablet & Smaller Desktops --- */
+@media (max-width: 992px) {
+    .configurator-container {
+        flex-direction: column; /* Stack viewer and controls */
+    }
+
+    .controls-column {
+        min-width: initial; /* Remove desktop min-width */
+        max-width: initial; /* Remove desktop max-width */
+        width: 100%;        /* Take full width when stacked */
+        max-height: none;   /* Remove height limit if previously set */
+        margin-top: 0; /* Remove space when stacked - now handled by viewer border */
+        border-top: 1px solid rgba(0,0,0,0.1); /* Add separator */
+        border-left: none; /* Remove side border */
+        overflow-y: visible; /* Allow content to flow */
+        /* Ensure background covers full width */
+        background-color: rgba(26, 26, 26, var(--content-bg-opacity));
+    }
+
+    .viewer-column {
+        min-height: 50vh; /* Ensure viewer has space */
+        padding: 1.5rem;  /* Slightly reduce padding */
+        border-right: none; /* Remove side border */
+        /* Ensure background covers full width */
+         background-color: rgba(255, 255, 255, calc(var(--content-bg-opacity) * 0.8));
+    }
+
+    .current-car-title {
+        font-size: 2rem;   /* Reduce heading size */
+        margin-bottom: 1rem;
+    }
+
+    .car-viewer-wrapper {
+        max-width: 700px; /* Adjust max width if needed */
+    }
+
+    .back-to-gallery-btn {
+         margin-bottom: 0.5rem; /* Reduce space */
+    }
+
+    .page-section h2 {
+        font-size: 2.5rem; /* Adjust section titles */
+    }
+    .section-intro { font-size: 1.1rem; }
+    .about-container p { font-size: 1.05rem; }
+
+     /* Adjust product grid for potentially fewer columns */
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Slightly smaller min */
+        gap: 1.5rem;
+    }
+    .section-container { padding: 1.5rem; } /* Reduce container padding */
+
+    .contact-form {
+        padding: 0; /* Remove padding, handled by container */
+    }
+}
+
+
+/* --- Smaller Tablets & Large Phones --- */
+@media (max-width: 768px) {
+    :root {
+        --header-height: auto; /* Allow header to wrap */
+    }
+    .site-header {
+        padding: 0 1rem; /* Reduce header padding */
+        height: auto; /* Allow header height to adjust */
+        min-height: 60px;
+    }
+    .header-container {
+        flex-direction: column; /* Stack logo and nav */
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0; /* Add padding when stacked */
+    }
+    #logo { height: 50px; } /* Adjust logo size */
+    .main-nav ul {
+        justify-content: center; /* Center nav items */
+        flex-wrap: wrap;        /* Allow nav items to wrap */
+        gap: 5px 10px;          /* Adjust gap */
+    }
+     .main-nav a {
+        font-size: 0.9rem;      /* Slightly smaller nav links */
+        padding: 6px 10px;
+    }
+
+    .page-section {
+        padding: 1.5rem 1rem; /* Consistent padding */
+    }
+     .section-container { padding: 1.5rem 1rem; } /* Match section padding */
+     .about-container { margin-top: 1rem; margin-bottom: 1rem; }
+
+    .page-section h2 {
+        font-size: 2rem; /* Further reduce titles */
+    }
+    .section-intro {
+        font-size: 1rem;   /* Reduce intro text size */
+        margin-bottom: 1.5rem;
+    }
+    .about-container p { font-size: 1rem; }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+    }
+     .product-card {
+        padding: 0.8rem 0.8rem 1rem; /* Reduce card padding */
+    }
+     .product-card-title { font-size: 1.3rem; }
+     .product-card-price { font-size: 0.95rem; margin-bottom: 0.8rem;}
+     .product-card-button { font-size: 0.85rem; padding: 8px 12px; }
+
+
+    .viewer-column {
+        padding: 1rem;    /* Reduce padding */
+        min-height: 40vh; /* Adjust height */
+    }
+    .current-car-title {
+        font-size: 1.8rem; /* Further reduce */
+    }
+    .car-viewer-wrapper {
+        /* Consider changing aspect ratio if needed */
+        /* aspect-ratio: 4 / 3; */
+        max-width: 500px;
+    }
+    .price-summary {
+        font-size: 1rem;
+    }
+
+    .controls-column {
+        padding: 1rem; /* Reduce padding */
+    }
+    .controls-heading { font-size: 1.4rem; margin-bottom: 1rem; }
+    .control-section h5 { font-size: 0.85rem; }
+    .color-options button.color-swatch { width: 26px; height: 26px; }
+    .customization-options label,
+    .customization-options select { font-size: 0.9rem; }
+    .cta-button { font-size: 0.9rem; padding: 10px 15px; } /* Applies to all unless overridden */
+
+    .contact-form label { font-size: 0.9rem; }
+    .contact-form input, .contact-form textarea { font-size: 0.95rem; }
+}
+
+
+/* --- Mobile Phones --- */
+@media (max-width: 480px) {
+    .site-header { min-height: 50px; padding: 0 0.5rem;}
+    #logo { height: 40px; } /* Smaller logo */
+    .main-nav { width: 100%; } /* Ensure nav takes full width if wrapping */
+    .main-nav ul { gap: 3px 5px; } /* Tighter gap */
+    .main-nav a { font-size: 0.8rem; padding: 5px 8px; }
+
+    .page-section { padding: 1rem 0.5rem; }
+     .section-container { padding: 1rem 0.5rem; } /* Match padding */
+    .page-section h2 { font-size: 1.8rem; } /* Title size */
+    .section-intro { font-size: 0.95rem; }
+    .about-container p { font-size: 0.95rem; }
+
+    /* Force single column grid */
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+     .product-card { /* Ensure cards don't get too wide */
+        max-width: 320px; margin-left: auto; margin-right: auto;
+    }
+
+    .viewer-column { padding: 1rem 0.5rem; min-height: 35vh; }
+    .current-car-title { font-size: 1.5rem; }
+    .car-viewer-wrapper { max-width: 95%; /* Use percentage width */ }
+    .price-summary { text-align: center; font-size: 1rem; /* Adjusted size */}
+
+    .controls-column { padding: 0.8rem; }
+    .controls-heading { font-size: 1.3rem; }
+    .options-panel { padding: 0.8rem; }
+    .control-section h5 { font-size: 0.8rem; }
+    .color-options button.color-swatch { width: 24px; height: 24px; margin-right: 4px;}
+    .customization-options label,
+    .customization-options select { font-size: 0.85rem; }
+
+    .contact-form button.cta-button { width: 100%; } /* Full width button */
+
+    .site-footer { font-size: 0.8rem; padding: 1rem 0.5rem; }
+}

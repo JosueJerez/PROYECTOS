@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drift Lab GT - Tuning personalizado y vinilos</title> <!-- Updated Title -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <!-- Use the uploaded logo file name -->
+                <img src="images/logo.png" alt="Drift Lab GT Logo" id="logo">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <!-- Added About link and made it active initially -->
+                    <li><a href="#about" class="nav-link active" data-target="about-section">Sobre nosotros</a></li>
+                    <li><a href="#gallery" class="nav-link" data-target="gallery-section">Tienda</a></li>
+                    <li><a href="#configurator" class="nav-link" data-target="configurator-section">Build</a></li>
+                    <li><a href="#contact" class="nav-link" data-target="contact-section">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- === Main Content Area === -->
+    <main id="main-content">
+
+        <!-- === NEW About Section === -->
+        <section id="about-section" class="page-section active"> <!-- Set as active -->
+             <div class="section-container about-container"> <!-- Added about-container class -->
+
+                <img src="images/logo.png" alt="Drift Lab GT Logo" class="about-logo">
+
+                <h2>Bienvenido a Drift Lab GT</h2>
+                <p class="section-intro">Tus especialistas en rendimiento y estilo</p>
+                <p>En Drift Lab GT, vivimos la pasión por el automovilismo. Nos especializamos en el ensamblaje y la modificación profesional de piezas de alto rendimiento ("tuning") para liberar todo el potencial de su vehículo. Ya sea que busque tiempos de vuelta más rápidos, una postura más agresiva o simplemente mejorar su experiencia de conducción, tenemos la experiencia para hacerlo realidad.</p>
+                <p>Más allá del rendimiento, ofrecemos servicios de aplicación de vinilo totalmente personalizados. Desde diseños personalizados y franjas de competición hasta gráficos y detalles únicos, nuestro equipo puede transformar la apariencia de su coche, convirtiéndolo en un fiel reflejo de su estilo personal. Trabajamos estrechamente con usted para diseñar e instalar vinilos de alta calidad, impactantes y duraderos.</p>
+                <p>¡Explora nuestra tienda para conocer las plataformas disponibles o ingresa directamente al configurador para comenzar a construir la máquina de tus sueños hoy mismo!</p>
+             </div>
+        </section>
+
+        <!-- === Gallery Section (Shop) === -->
+        <section id="gallery-section" class="page-section"> <!-- No longer active by default -->
+            <div class="section-container">
+                <h2>Plataformas Disponibles</h2>
+                <p class="section-intro">Selecciona un auto para ver detalles y costumización.</p>
+                <div class="product-grid">
+
+                    <!-- R34 Card -->
+                    <article class="product-card" data-car="r34" data-name="Nissan Skyline R34" data-base-path="images/r34/skylane/r34_skylane_">
+                        <img src="images/r34/r34_skylane_01.png" alt="Nissan Skyline R34" class="product-card-image">
+                        <h3 class="product-card-title">Nissan Skyline R34</h3>
+                        <p class="product-card-price">Precio: Consulta</p>
+                        <button class="product-card-button" data-action="customize">Personaliza tu auto!</button>
+                    </article>
+
+                    <!-- S15 Card -->
+                    <article class="product-card" data-car="s15" data-name="Nissan Silvia S15" data-base-path="images/s15/silver/s15_silver_">
+                        <img src="images/s15/s15_silver_01.png" alt="Nissan Silvia S15" class="product-card-image">
+                        <h3 class="product-card-title">Nissan Silvia S15</h3>
+                        <p class="product-card-price">Precio: Consulta</p>
+                        <button class="product-card-button" data-action="customize">Personaliza tu auto!</button>
+                    </article>
+
+                    <!-- RX7 Card (Corrected data-car) -->
+                     <article class="product-card" data-car="rx7" data-name="Mazda-Rx7" data-base-path="images/rx7/mazda/rx7_mazda_">
+                        <img src="images/rx7/rx7_mazda_01.png" alt="Mazda-Rx7" class="product-card-image">
+                        <h3 class="product-card-title">Mazda-Rx7</h3>
+                        <p class="product-card-price">Precio: Consulta</p>
+                        <button class="product-card-button" data-action="customize">Personaliza tu auto!</button>
+                    </article>
+
+                    <!-- mk4 Card (Corrected data-car and img src path) -->
+                    <article class="product-card" data-car="mk4" data-name="Toyota Supra mk4" data-base-path="images/supra/mk4/mk4_supra_">
+                         <img src="images/supra/mk4_supra_01.png" alt="Toyota Supra mk4" class="product-card-image">
+                         <h3 class="product-card-title">Toyota Supra mk4</h3>
+                         <p class="product-card-price">Precio: Consulta</p>
+                         <button class="product-card-button" data-action="customize">Personaliza tu auto!</button>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- === Configurator Section (Build) === -->
+        <section id="configurator-section" class="page-section">
+            <div class="configurator-container">
+                <!-- Viewer Column -->
+                 <div class="viewer-column">
+                    <button class="back-to-gallery-btn" title="Back to Shop">← Back to Tienda</button>
+                    <h2 id="current-car-name" class="current-car-title"></h2> <!-- Dynamically updated -->
+                    <div class="car-viewer-wrapper">
+                        <div class="car-viewer" id="main-car-viewer">
+                            <img src="" alt="" class="car-image" id="active-car-image" draggable="false"> <!-- Src/Alt set by JS -->
+                            <div class="viewer-overlay">Arrastra para rotar</div>
+                        </div>
+                    </div>
+                    <div class="price-summary">
+                        <span class="price-label">Precio base:</span>
+                        <span class="price-value">Consulta</span>
+                    </div>
+                </div>
+
+                <!-- Controls Column -->
+                <aside class="controls-column">
+                    <!-- Car Selector (Can be hidden/removed if navigation is only via gallery) -->
+                    <!-- <nav class="car-selector"> ... </nav> -->
+
+                    <h3 class="controls-heading">Configura tu auto</h3>
+
+                    <div class="options-panel-container">
+                        <!-- Options panels will be dynamically shown/hidden by JS -->
+                        <!-- R34 Options Panel -->
+                         <div id="options-r34" class="options-panel" data-car-panel="r34">
+                            <h4>Customiza R34</h4>
+                            <!-- Populate options based on your actual R34 custom parts -->
+                            <div class="control-section color-options">
+                                <h5>Color:</h5>
+                                <button class="color-swatch active" data-color="silver" style="background-color: silver;"></button>
+                                <button class="color-swatch" data-color="blue" style="background-color: #0d47a1;"></button>
+                                <button class="color-swatch" data-color="black" style="background-color: #222;"></button>
+                                <button class="color-swatch" data-color="white" style="background-color: #eee;"></button>
+                                <button class="color-swatch" data-color="red" style="background-color: #b71c1c;"></button>
+                            </div>
+                            <div class="control-section customization-options">
+                                <h5>Opciones:</h5>
+                                <label for="r34-wheels">Ruedas:</label>
+                                <select id="r34-wheels" name="wheels">
+                                    <option value="stock">Stock</option>
+                                    <option value="nismo-lmgt4">Nismo LMGT4</option>
+                                    <option value="volk-te37">Volk TE37</option>
+                                </select>
+                                <label for="r34-spoiler">Aleron:</label>
+                                <select id="r34-spoiler" name="spoiler">
+                                    <option value="stock">Stock</option>
+                                    <option value="nismo-gt">Nismo GT Wing</option>
+                                    <option value="none">Spoiler Delete</option>
+                                </select>
+                                <label><input type="checkbox" name="tint" value="true"> Window Tint</label>
+                                <label><input type="checkbox" name="lowering" value="true"> Lowering Springs</label>
+                            </div>
+                        </div>
+                        <!-- S15 Options Panel -->
+                        <div id="options-s15" class="options-panel" data-car-panel="s15">
+                             <h4>Customiza S15</h4>
+                              <!-- Populate options based on your actual S15 custom parts -->
+                            <div class="control-section color-options">
+                                <h5>Color:</h5>
+                                <button class="color-swatch active" data-color="silver" style="background-color: silver;"></button>
+                                <button class="color-swatch" data-color="blue" style="background-color: #1565c0;"></button>
+                                <button class="color-swatch" data-color="black" style="background-color: #222;"></button>
+                                <button class="color-swatch" data-color="white" style="background-color: #eee;"></button>
+                                <button class="color-swatch" data-color="yellow" style="background-color: #fbc02d;"></button>
+                            </div>
+                            <div class="control-section customization-options">
+                                <h5>Opciones:</h5>
+                                <label for="s15-bodykit">Body Kit:</label>
+                                <select id="s15-bodykit" name="bodykit">
+                                    <option value="stock">Stock Aero</option>
+                                    <option value="vertex">Vertex Edge</option>
+                                    <option value="origin">Origin Lab</option>
+                                </select>
+                                <label for="s15-wheels">Ruedas:</label>
+                                <select id="s15-wheels" name="wheels">
+                                    <option value="stock">Stock</option>
+                                    <option value="work-meister">Work Meister S1</option>
+                                    <option value="weds-kranze">Weds Kranze LXZ</option>
+                                </select>
+                                <label><input type="checkbox" name="intercooler" value="true"> Front Mount Intercooler</label>
+                                <label><input type="checkbox" name="coilovers" value="true"> Coilovers</label>
+                            </div>
+                        </div>
+                         <!-- rx7 Options Panel -->
+                         <div id="options-rx7" class="options-panel" data-car-panel="rx7">
+                            <h4>Customiza RX-7</h4>
+                            <!-- Populate options based on your actual RX7 custom parts -->
+                            <div class="control-section color-options">
+                                <h5>Color:</h5>
+                                <button class="color-swatch active" data-color="silver" style="background-color: silver;"></button> <!-- Changed default -->
+                                <button class="color-swatch" data-color="red" style="background-color: #c62828;"></button>
+                                <button class="color-swatch" data-color="black" style="background-color: #222;"></button>
+                                <button class="color-swatch" data-color="white" style="background-color: #eee;"></button>
+                                <button class="color-swatch" data-color="yellow" style="background-color: #fdd835;"></button>
+                            </div>
+                             <div class="control-section customization-options">
+                                <h5>Options:</h5>
+                                <label for="rx7-bodykit">Body Kit:</label>
+                                <select id="rx7-bodykit" name="bodykit">
+                                    <option value="stock">Stock Body</option>
+                                    <option value="re-amemiya">RE Amemiya GT-AD</option>
+                                    <option value="veilside">Veilside Fortune</option>
+                                </select>
+                                <label for="rx7-wing">Aleron:</label>
+                                <select id="rx7-wing" name="wing">
+                                    <option value="stock">Stock</option>
+                                    <option value="gt-wing">GT Wing</option>
+                                    <option value="ducktail">Ducktail</option>
+                                </select>
+                                <label><input type="checkbox" name="popup" value="true"> Keep Pop-up Headlights</label>
+                                <label><input type="checkbox" name="exhaust" value="true"> Cat-back Exhaust</label>
+                            </div>
+                        </div>
+                         <!-- mk4 Options Panel -->
+                         <div id="options-mk4" class="options-panel" data-car-panel="mk4">
+                             <h4>Customize Supra MK4</h4>
+                             <!-- Populate options based on your actual MK4 custom parts -->
+                            <div class="control-section color-options">
+                                <h5>Color:</h5>
+                                <button class="color-swatch active" data-color="silver" style="background-color: silver;"></button> <!-- Changed default -->
+                                <button class="color-swatch" data-color="red" style="background-color: #d32f2f;"></button>
+                                <button class="color-swatch" data-color="black" style="background-color: #222;"></button>
+                                <button class="color-swatch" data-color="white" style="background-color: #eee;"></button>
+                                <option value="trd-wing">TRD Wing</option>
+                                <option value="stock-active">Stock Active Spoiler</option>
+                                <option value="none">Elimina aleron</option>
+                            </div>
+                             <div class="control-section customization-options">
+                                <h5>Opciones:</h5>
+                                <label for="mk4-lip">Parte frontal:</label>
+                                <select id="mk4-lip" name="lip">
+                                    <option value="stock">Stock</option>
+                                    <option value="trd">TRD Style Lip</option>
+                                    <option value="ridox">Ridox Style Lip</option>
+                                </select>
+                                <label for="mk4-wing">Aleron:</label>
+                                <select id="mk4-wing" name="wing">
+                                    <option value="stock">Stock</option>
+                                     <option value="trd-wing">TRD Wing</option>
+                                     <option value="stock-active">Stock Active Spoiler</option>
+                                     <option value="none">Spoiler Delete</option>
+                                </select>
+                                <label><input type="checkbox" name="targa" value="true"> Targa Top</label>
+                                <label><input type="checkbox" name="boost" value="true"> Boost Controller</label>
+                             </div>
+                        </div>
+                    </div><!-- /.options-panel-container -->
+
+                     <div class="action-area">
+                         <button class="cta-button">Haz tu pedido!</button>
+                     </div>
+                     <section id="contact-inline" class="contact-section-inline">
+                         <!-- Quick Contact form not really needed here anymore, but kept -->
+                         <h5>Consulta rapida</h5>
+                         <form class="contact-form-inline">
+                             <input type="email" placeholder="Your Email" required>
+                             <button type="submit">Enviar</button>
+                         </form>
+                     </section>
+                </aside>
+            </div>
+        </section>
+
+        <!-- === Contact Section === -->
+        <section id="contact-section" class="page-section">
+             <div class="section-container contact-container"> <!-- Added contact-container class -->
+                <h2>Contacto</h2>
+                <p class="section-intro">¿Tienes algunas preguntas o estas listo para empezar a construir tu sueño? Contactanos!</p>
+                <form class="contact-form">
+                    <!-- Form fields as in previous "store" example -->
+                    <div><label for="name">Nombre:</label><input type="text" id="name" name="name" required></div>
+                    <div><label for="email">Email:</label><input type="email" id="email" name="email" required></div>
+                    <div><label for="message">Tu mensaje:</label><textarea id="message" name="message" rows="5" required></textarea></div>
+                    <button type="submit" class="cta-button">Enviar mensaje</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2025 Drift Lab GT. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
