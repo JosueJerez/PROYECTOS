@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastroClick - La Solución Digital para tu Restaurante</title>
+    
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav class="navbar">
+    <div class="container">
+       
+        <a href="#" class="logo"><img src="images/saborlocal.png" alt="Logo GastroClick"></a>
+        
+        <ul class="nav-links">
+            <li><a href="#problema" class="nav-link">El Problema</a></li>
+            <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
+            <li><a href="#testimonio" class="nav-link">Caso de Éxito</a></li>
+            <li><button class="btn open-modal-btn">Solicitar Demo</button></li>
+        </ul>
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+</nav>
+
+    <!-- SECCIÓN PRINCIPAL (HERO) -->
+    <header class="hero" id="hero">
+        <div class="container">
+            <h1>Transforma tu Restaurante. Simplifica tus Pedidos.</h1>
+            <p>GastroClick es la plataforma digital diseñada para restaurantes familiares como el tuyo. Di adiós al caos telefónico, aumenta tus ventas y deleita a tus clientes con una experiencia de pedido moderna.</p>
+            <button class="btn open-modal-btn">Solicitar una Demostración Gratuita</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECCIÓN DEL PROBLEMA -->
+        <section id="problema" class="scroll-section">
+            <div class="container">
+                <h2>¿Te suena familiar este escenario?</h2>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <div class="icon">📞</div>
+                        <h3>Llamadas sin fin</h3>
+                        <p>El teléfono no para de sonar en horas pico, y cada llamada es una posible fuente de error.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="icon">📝</div>
+                        <h3>Notas indescifrables</h3>
+                        <p>La cocina lucha por entender pedidos escritos a mano, causando retrasos y platos equivocados.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="icon">😩</div>
+                        <h3>Clientes frustrados</h3>
+                        <p>Largos tiempos de espera y errores en los pedidos generan clientes insatisfechos que quizás no vuelvan.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="icon">📈</div>
+                        <h3>Crecimiento limitado</h3>
+                        <p>Tu capacidad para crecer está limitada por un proceso manual que no puede manejar más demanda.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ... Las otras secciones como "Solución", "Beneficios", etc. ... -->
+        
+        <section id="beneficios" class="scroll-section">
+             <div class="container">
+                <h2>Todo lo que necesitas para crecer</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">⭐</div>
+                        <h3>Experiencia Superior</h3>
+                        <p>Tus clientes podrán ver tu menú con fotos, personalizar sus platos y pagar de forma segura en segundos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h3>Gestión Centralizada</h3>
+                        <p>Recibe todos los pedidos en una pantalla clara y organizada. Se acabaron los errores de comunicación con la cocina.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔧</div>
+                        <h3>Control Total de tu Menú</h3>
+                        <p>Actualiza tu menú, precios y disponibilidad con un solo clic, al instante.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonio" class="scroll-section">
+            <div class="container">
+                <h2>El éxito de "Sabor Local"</h2>
+                <blockquote class="testimonial-quote">"Desde que implementamos GastroClick, los errores han desaparecido, los pedidos han aumentado en un 30% y nuestros clientes están encantados."</blockquote>
+                <p class="testimonial-author">- Dueños del Restaurante "Sabor Local"</p>
+            </div>
+        </section>
+
+        <section id="cta-final" class="scroll-section">
+            <div class="container">
+                <h2>¿Listo para llevar tu restaurante al siguiente nivel?</h2>
+                <button class="btn open-modal-btn">Agenda tu Demo Personalizada Ahora</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GastroClick. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- VENTANA MODAL PARA EL FORMULARIO -->
+    <div class="modal-overlay hidden">
+        <div class="modal">
+            <button class="close-modal-btn">&times;</button>
+            <div id="form-container">
+                <h3>Solicita tu Demo Gratuita</h3>
+                <p>Déjanos tus datos y nos pondremos en contacto.</p>
+                <form id="demo-form">
+                    <div class="form-group"><label for="name">Tu Nombre</label><input type="text" id="name" required></div>
+                    <div class="form-group"><label for="restaurant">Nombre del Restaurante</label><input type="text" id="restaurant" required></div>
+                    <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
+                    <button type="submit" class="btn">Enviar Solicitud</button>
+                </form>
+            </div>
+            <div id="success-message" class="hidden">
+                <h4>¡Gracias!</h4>
+                <p>Hemos recibido tu solicitud. Pronto nos contactaremos.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Este enlace llama al archivo de JavaScript. Se pone al final para que la página cargue más rápido -->
+    <script src="script.js"></script>
+</body>
+</html>
