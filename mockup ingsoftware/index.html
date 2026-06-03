@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGCOT-GT | Centro de Control Transmetro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- BARRA LATERAL -->
+        <nav class="sidebar">
+            <div class="logo-area">
+                <img src="images/sigcot.png" alt="SIGCOT Logo" class="logo-img">
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-view="view-dashboard">
+                    <i class="fas fa-th-large"></i> <span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-view="view-fleet">
+                    <i class="fas fa-bus"></i> <span>Gestión de Flota</span>
+                </li>
+                <li class="nav-item" data-view="view-personal">
+                    <i class="fas fa-users-cog"></i> <span>Personal Operativo</span>
+                </li>
+                <li class="nav-item" data-view="view-lines">
+                    <i class="fas fa-route"></i> <span>Líneas y Estaciones</span>
+                </li>
+                <li class="nav-item" data-view="view-reportes">
+                    <i class="fas fa-file-invoice-dollar"></i> <span>Reportes</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>SIGCOT-GT v1.0 <br> 2026 © Municipalidad GT</p>
+            </div>
+        </nav>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <header class="glass-header">
+                <div class="header-left">
+                    <h1 id="view-title">Dashboard Operativo</h1>
+                    <p id="current-date"></p>
+                </div>
+                <div class="header-right">
+                    <div class="muni-badge">
+                        <i class="fas fa-landmark"></i>
+                        <span>Municipalidad de Guatemala</span>
+                    </div>
+                    <div class="user-profile">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- SECCIÓN: DASHBOARD -->
+            <div id="view-dashboard" class="view-section">
+                <div class="stats-grid">
+                    <div class="card stat-card blue">
+                        <i class="fas fa-bus"></i>
+                        <div class="stat-info"><h3>42</h3><p>Buses en Ruta</p></div>
+                    </div>
+                    <div class="card stat-card cyan">
+                        <i class="fas fa-door-open"></i>
+                        <div class="stat-info"><h3>30</h3><p>Estaciones Activas</p></div>
+                    </div>
+                    <div class="card stat-card red">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div class="stat-info"><h3 id="stat-alerts">0</h3><p>Alertas Críticas</p></div>
+                    </div>
+                </div>
+
+                <div class="monitor-grid">
+                    <div class="card map-container">
+                        <h3><i class="fas fa-map-marked-alt"></i> Mapa de Operaciones en Tiempo Real</h3>
+                        <div class="map-placeholder">
+                            <div class="pulse-point" style="top:40%; left:50%;"></div>
+                            <div class="pulse-point" style="top:60%; left:45%;"></div>
+                            <p>Sincronizando coordenadas GPS...</p>
+                        </div>
+                    </div>
+                    <div class="card alerts-container">
+                        <h3><i class="fas fa-bell"></i> Monitor de Alertas (RF-10)</h3>
+                        <div id="alerts-list">
+                            <p class="empty-msg">No hay incidentes reportados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card chart-full">
+                    <h3><i class="fas fa-chart-line"></i> Flujo de Pasajeros por Hora (Red Metropolitana)</h3>
+                    <div class="chart-wrapper"><canvas id="occupancyChart"></canvas></div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: GESTIÓN DE FLOTA -->
+            <div id="view-fleet" class="view-section hidden">
+                <div class="card">
+                    <div class="section-header">
+                        <h2>Listado de Unidades de Transporte</h2>
+                        <button class="btn-action" id="openModalBus"><i class="fas fa-plus"></i> Registrar Bus</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Unidad</th><th>Capacidad</th><th>Estado</th><th>Línea</th><th>Acciones</th></tr>
+                        </thead>
+                        <tbody id="fleet-table-body">
+                            <tr>
+                                <td><strong>TR-2040</strong></td>
+                                <td>100 pax</td>
+                                <td><span class="badge badge-green">En Ruta</span></td>
+                                <td>Línea 12</td>
+                                <td><button class="btn-icon"><i class="fas fa-edit"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: PERSONAL -->
+            <div id="view-personal" class="view-section hidden">
+                <div class="card">
+                    <div class="section-header">
+                        <h2>Personal Operativo (RF-12)</h2>
+                        <button class="btn-action"><i class="fas fa-user-plus"></i> Nuevo Registro</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Nombre</th><th>Puesto</th><th>DPI</th><th>Estado</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan Alberto Pérez</td>
+                                <td>Piloto (Tipo A)</td>
+                                <td>2540 12345 0101</td>
+                                <td><span class="badge badge-green">Activo</span></td>
+                            </tr>
+                            <tr>
+                                <td>María Fernanda López</td>
+                                <td>Operador de Estación</td>
+                                <td>1990 88776 0101</td>
+                                <td><span class="badge badge-green">Activo</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: LÍNEAS -->
+            <div id="view-lines" class="view-section hidden">
+                <div class="card">
+                    <h2>Red de Líneas y Estaciones</h2>
+                    <div class="lines-cards">
+                        <div class="line-card l12">
+                            <h3>Línea 12</h3>
+                            <p>Eje Sur: CENMA - Plaza Barrios</p>
+                            <span>12.5 km | 18 Estaciones</span>
+                        </div>
+                        <div class="line-card l7">
+                            <h3>Línea 7</h3>
+                            <p>Eje Periférico: USAC - Colonias</p>
+                            <span>15.2 km | 12 Estaciones</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: REPORTES -->
+            <div id="view-reportes" class="view-section hidden">
+                <div class="card">
+                    <h2>Centro de Reportes y Auditoría</h2>
+                    <div class="report-grid">
+                        <button class="report-btn excel"><i class="fas fa-file-excel"></i> Exportar Flota</button>
+                        <button class="report-btn pdf"><i class="fas fa-file-pdf"></i> Reporte Alertas</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MODAL: REGISTRO BUS -->
+    <div id="modalBus" class="modal">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h2>Registrar Unidad</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="formBus">
+                <div class="input-group">
+                    <label>Número de Placa:</label>
+                    <input type="text" id="busPlaca" placeholder="TR-0000" required>
+                </div>
+                <div class="input-group">
+                    <label>Capacidad Máxima:</label>
+                    <input type="number" id="busCap" placeholder="100" required>
+                </div>
+                <button type="submit" class="btn-save">Guardar en Base de Datos</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
