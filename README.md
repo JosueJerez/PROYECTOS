@@ -19,20 +19,20 @@ Base de conocimientos personal e investigaciones en la nube para documentar y ce
 
 ## 🛠️ Proyectos en este Repositorio
 
-### 🔒 1. [pfsense-network-security-lab](./pfsense-network-security-lab)
+### 🔒 1. [pfsense-network-security-lab](https://github.com/JosueJerez/PROYECTOS/tree/main/pfsense-network-security-lab)
 Laboratorio práctico de seguridad de redes simulando un entorno corporativo controlado.
 * **Tecnologías:** pfSense, Virtualización, Redes.
 * **Características:** Implementación y configuración de firewall, definición de reglas de filtrado de tráfico, direccionamiento NAT y segmentación lógica de redes para garantizar un entorno seguro de pruebas.
 
-### 🍔 2. [GASTROCLICK](./GASTROCLICK)
+### 🍔 2. [GASTROCLICK](https://github.com/JosueJerez/PROYECTOS/tree/main/GASTROCLICK)
 Aplicación web interactiva diseñada para la automatización y gestión de pedidos de comida en restaurantes.
 * **Tecnologías:** JavaScript (ES6+), HTML5, CSS3.
 * **Características:** Diseño responsive adaptado a múltiples dispositivos, interfaz interactiva y flujos optimizados para la toma rápida de comandas.
 
-### 🤖 3. [drift-lab-gt](./drift-lab-gt) / [RUTA DE APRENDIZAJE NEURONAS](./RUTA%20DE%20APRENDIZAJE%20NEURONAS)
-Laboratorios de práctica orientados al desarrollo de algoritmos, automatización de procesos mediante scripts y fundamentos de inteligencia artificial (redes neuronales).
+### 🤖 3. [drift-lab-gt](https://github.com/JosueJerez/PROYECTOS/tree/main/drift-lab-gt) / [RUTA DE APRENDIZAJE NEURONAS](https://github.com/JosueJerez/PROYECTOS/tree/main/RUTA%20DE%20APRENDIZAJE%20NEURONAS)
+Laboratorios de práctica orientados al desarrollo de algoritmos, automatización de procesos mediante scripts y de aprendizaje en desarrollo.
 
-### 📐 4. [mockup ingsoftware](./mockup%20ingsoftware)
+### 📐 4. [mockup ingsoftware](https://github.com/JosueJerez/PROYECTOS/tree/main/mockup%20ingsoftware)
 Modelado, diseño de prototipos y análisis de requerimientos aplicados al desarrollo de Ingeniería de Software.
 
 ---
